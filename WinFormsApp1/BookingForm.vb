@@ -18,6 +18,7 @@ Public Class BookingForm
     Private connectionString As String = "server=localhost;database=pamoja_rail;uid=root;pwd=;"
 
     Public Sub New()
+        InitializeComponent()
         Me.Text = "Pamoja Rail Services - Booking Management"
         Me.Size = New Size(1000, 650)
         Me.StartPosition = FormStartPosition.CenterScreen

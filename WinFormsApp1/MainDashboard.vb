@@ -16,17 +16,28 @@ Partial Public Class MainDashboard
     Private btnUserManagement As Button
     Private btnUserLogout As Button
 
-    Public Sub New(role As String)
-        CurrentRole = role
-        Dim currentUser = DataService.Instance.CurrentUser
-        CurrentUsername = If(currentUser IsNot Nothing, currentUser.FullName, "User")
-
-        Me.Text = "Pamoja Rail Services - Control Center (" & CurrentRole & " Mode)"
+    Public Sub New()
+        InitializeComponent()
+        CurrentRole = "Admin"
+        CurrentUsername = "Administrator"
+        Me.Text = "Pamoja Rail Services - Control Center (Admin Mode)"
         Me.Size = New Size(1050, 700)
         Me.StartPosition = FormStartPosition.CenterScreen
         Me.FormBorderStyle = FormBorderStyle.Sizable
         Me.DoubleBuffered = True
         Me.BackColor = Color.FromArgb(248, 250, 252)
+    End Sub
+
+    Public Sub New(role As String)
+        Me.New()
+        CurrentRole = role
+        Dim currentUser = DataService.Instance.CurrentUser
+        If currentUser IsNot Nothing Then
+            CurrentUsername = currentUser.FullName
+        Else
+            CurrentUsername = If(role = "Admin", "Administrator", "Member")
+        End If
+        Me.Text = "Pamoja Rail Services - Control Center (" & CurrentRole & " Mode)"
     End Sub
 
     Private Sub MainDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
