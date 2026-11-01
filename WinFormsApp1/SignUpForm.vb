@@ -14,14 +14,6 @@ Public Class SignUpForm
     Private cmbRole As ComboBox
     Private btnLogin As Button
     Private btnSignUp As Button
-
-    <STAThread()>
-    Public Shared Sub Main()
-        Application.EnableVisualStyles()
-        Application.SetCompatibleTextRenderingDefault(False)
-        Application.Run(New SignUpForm())
-    End Sub
-
     Public Sub New()
         Me.Text = "Pamoja Rail Services - Secure Portal"
         Me.Size = New Size(920, 620)
